@@ -1,0 +1,90 @@
+filetype off
+
+set foldmethod=indent
+set foldlevel=99
+
+set ruler
+
+set tabstop=4
+set shiftwidth=4
+set expandtab
+
+set pastetoggle=<F2>
+
+set lbr
+set smarttab
+
+set ai
+set autoindent
+set wrap
+
+set hlsearch " highlight search
+"set number
+syntax on
+
+" map F8 to taglist
+nnoremap <silent> <F8> :TlistToggle<CR>
+
+" Status line
+set laststatus=2
+set statusline=\ %F%m%r%h\ %w\ \ CWD:\ %r%h\ \ \ Line:\ %l/%L:%c
+
+" Save backup files to a specific dir
+" set backup
+" set backupdir=~/.vim/backup
+" set directory=~/.vim/tmp
+
+" tab completion stuff
+set wildmenu
+set wildmode=list:longest,full
+
+set textwidth=79
+
+if has("autocmd")
+  au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
+    \| exe "normal g'\"" | endif
+endif
+
+" Filetype based indent rules
+if has("autocmd")
+  filetype indent plugin on
+
+
+endif
+
+
+
+" Mouse support
+set mouse=a
+set clipboard=unnamed
+
+map! <silent> <F3> <ESC>:call ToggleMouse()<CR>i
+map <silent> <F3> :call ToggleMouse()<CR>
+function! ToggleMouse()
+  if &mouse == 'a'
+    set mouse=
+    echo "Mouse usage disabled"
+  else
+    set mouse=a
+    echo "Mouse usage enabled"
+  endif
+endfunction
+
+" paste support with love
+" set paste
+
+set title
+
+set wildignore=*.pyc,*.o
+
+" remove trailing spaces
+autocmd BufWritePre * :%s/\s\+$//e
+" :%s/\s\+$//e
+
+set incsearch
+
+" colorscheme molokai
+" set background=dark
+set background=dark
+colorscheme solarized
+
